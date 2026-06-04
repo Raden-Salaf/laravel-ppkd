@@ -1,0 +1,42 @@
+MVC (Model Views Controller) :
+HMVC
+Layered (Service, Repository, Response, Controller)
+
+Views : Tampilan (user interface, user exprience)
+            -Html, CSS, Javascript
+            - Login database
+
+Controller : Ngontrol alur daro apps/web
+             menghubungkan antara views dan model
+
+Models : Query ke database/Logic database
+        - select, insert, update, delete
+        - Query builder, eloquent, orm ->
+
+Composer : Install package dari php
+artisan : buat jalanin fitur yang ada di laravel
+        php artisan fitur
+        php spark fitur -> CI 4
+
+Resource : index, detail, create, store, edit, update
+
+API : web -> full stack, api(rest api) -> Backend
+
+Routing : Pembuatan jalur
+dan ada 4 macam METHOD
+GET, POST, PUT, DELETE
+
+GET : Hanya membaca/melihat
+POST : Bisa mengirim data ke database/table untuk kebutuhan insert atau memasukan data baru ke SERVER/DATABASE
+PUT : Mengirim data ke database/table untuk kebutuhan UPDATE -> mengganti / memperbaharui data
+DELETE : Mengirim data ke database/table untuk kebutuhan DELETE -> menghapus data
+PATCH : Mengirim data ke database/table untuk kebutuhan UPDATE -> mengganti / memperbaharui data (hanya 1 field/column)
+
+CSRF : Bejo ke bank buat ngambil duit ke bank untuk ngambil duit kupruy, maka perlu surat kuasa dari kupruy
+CSRF : pake stempel khusus dari kupruy, agar bank bisa percaya
+Form ngirim csrf_token = 123
+session 123 -> kalo berhasil
+
+Folder Models -> menghubungkan database dengan Controller
+
+status 419 expired

@@ -228,8 +228,8 @@
                 </h1>
 
                 <p class="text-slate-400 mt-5 max-w-md">
-                    A modern dashboard experience with real-time analytics,
-                    clean UI, and powerful control panel.
+                    Modern Dashboard UI yang dibuat dengan Tailwind CSS, menampilkan desain yang bersih, responsif, dan
+                    mudah digunakan untuk memantau data dan kinerja sistem Anda.
                 </p>
 
                 <!-- dashboard mock -->

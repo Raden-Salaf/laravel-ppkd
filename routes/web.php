@@ -3,6 +3,8 @@
 use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -44,3 +46,15 @@ Route::post('action-logout', [LoginController::class, 'actionLogout'])->name('ac
 Route::get('dashboard', function () {
     return view('dashboard.index');
 })->middleware(['auth', \App\Http\Middleware\PreventBackHistory::class]); // ini untuk membatasi akses ke halaman dashboard hanya untuk yang sudah login saja, karena sudah menggunakan middleware auth, maka jika belum login akan otomatis diarahkan ke halaman login
+
+//Resource : GET, POST, PUT, DELETE
+Route::resource('user', UserController::class);
+// Role Controller
+Route::resource('role', RoleController::class);
+
+
+
+// Route::get('user', [UserController::class, 'index'])->name('user.index');
+// Route::get('user.create', [UserController::class, 'create'])->name('user.create');
+// Route::post('user.store', [UserController::class, 'store'])->name('store');
+// 3 route di atas ini untuk menampilkan halaman user index, create, dan store, dimana ini akan memanggil method index, create, dan store di UserController, tapi kita bisa menyingkatnya dengan menggunakan Route::resource('user', [UserController::class]), maka secara otomatis akan membuat route untuk index, create, store, show, edit, update, dan destroy, jadi kita tidak perlu menulis satu persatu route untuk setiap method di UserController, tapi karena kita hanya ingin menggunakan index, create, dan store saja, maka kita bisa menulis route seperti di atas saja.

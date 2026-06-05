@@ -36,7 +36,16 @@ CSRF : Bejo ke bank buat ngambil duit ke bank untuk ngambil duit kupruy, maka pe
 CSRF : pake stempel khusus dari kupruy, agar bank bisa percaya
 Form ngirim csrf_token = 123
 session 123 -> kalo berhasil
+#note = di laravel 13 tidak perlu menggunakan @CSRF untuk form
 
 Folder Models -> menghubungkan database dengan Controller
 
 status 419 expired
+
+Layering :
+Repository -> Select, Insert, Update, Delete
+Service -> select * from user where like (ngeksekusi query dasar)
+Validation ->
+Response ->
+Controller ->
+

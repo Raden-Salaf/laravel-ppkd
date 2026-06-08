@@ -49,3 +49,10 @@ Validation ->
 Response ->
 Controller ->
 
+Penggunaan :
+ Locker::create($request->all());  ---> (all-nya), hanya bisa digunakan ketika 'name' di field dalam form html itu selaras atau sama dengan column nama tabel
+
+
+ GET, POST, PUT, DELETE
+ tidak berlaku apabila menggunakan a href = (anchor), jadi hanya bisa menggunakan "GET"
+

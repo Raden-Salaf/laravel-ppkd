@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
-use Alert;
+use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 
 class UserController extends Controller
@@ -44,8 +45,8 @@ class UserController extends Controller
         // insert into user() values()
         $validate = $request->validate([
             "name" => "required",
-            "email" => "required|email|unique:user,email",
-            "password" => "'required|min6",
+            "email" => "required|email|unique:users,email",
+            "password" => "required|min:6",
         ]);
         User::create($request->all());
         Alert::success("Success!!", "Kamu berhasil menambahkan user");

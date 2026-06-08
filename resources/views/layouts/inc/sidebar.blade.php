@@ -100,7 +100,7 @@
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-person-badge-fill"></i>
-                        <span>user Management</span>
+                        <span>User Management</span>
                     </a>
                     <ul class="submenu ">
                         <li class="submenu-item ">
@@ -122,6 +122,13 @@
                             <a href="{{ route('role.create') }}"><i class="bi bi-diagram-3-fill"></i> Create Role</a>
                         </li>
                     </ul>
+                </li>
+
+                <li class="sidebar-item active ">
+                    <a href="{{ route('locker.index') }}" class='sidebar-link'>
+                        <i class="bi bi-key"></i>
+                        <span>Locker Management</span>
+                    </a>
                 </li>
 
                 <li class="sidebar-title">Forms &amp; Tables</li>

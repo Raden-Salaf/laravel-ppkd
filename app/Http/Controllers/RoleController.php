@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Role;
-use Alert;
+use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 
 class RoleController extends Controller

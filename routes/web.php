@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LatihanController;
+use App\Http\Controllers\LockerController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -51,6 +52,9 @@ Route::get('dashboard', function () {
 Route::resource('user', UserController::class);
 // Role Controller
 Route::resource('role', RoleController::class);
+
+// Locker Controller
+Route::resource('locker', LockerController::class);
 
 
 

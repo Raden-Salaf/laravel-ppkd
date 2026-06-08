@@ -56,6 +56,8 @@ Route::resource('role', RoleController::class);
 // Locker Controller
 Route::resource('locker', LockerController::class);
 
+// Route::get('locker', ())
+
 
 
 // Route::get('user', [UserController::class, 'index'])->name('user.index');

@@ -14,9 +14,9 @@
                     <label for="">Locker Code *</label>
                     <input type="text" class="form-control @error('locker_name') is-invalid @enderror"
                         value="{{ isset($locker) ? $locker->locker_name : old('locker_name') }}"
-                        placeholder="Enter Your Update Code" name="name" required>
+                        placeholder="Enter Your Update Code" name="locker_name" required>
                     @error('locker_name')
-                        <span class="invalid-feedback"></span>
+                        <span class="invalid-feedback">{{ $message    }}</span>
                     @enderror
                 </div>
                 <div class="mb-3">

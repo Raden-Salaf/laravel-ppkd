@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Locker;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class LockerController extends Controller
@@ -13,7 +14,7 @@ class LockerController extends Controller
      */
     public function index()
     {
-        $lockers = locker::orderBy("id", "asc")->get();
+        $lockers = locker::orderBy("locker_name", "asc")->get();
         $title = trans("Locker Management");
         return view("locker.index", compact("lockers", "title"));
     }
@@ -71,7 +72,18 @@ class LockerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            "locker_name" => 'required|' . Rule::unique("lockers", "locker_name")->ignore($id),
+            "batch" => "required|in:1,2,3,4",
+            "major" => "required|in:Web Programming,Content Creator,App Developer",
+            "status" => "required|in:Available,Unavailable,Damaged,Missing",
+        ]);
+        $data = Locker::find($id);
+        $data->update(
+            $request->all()
+        );
+        Alert::success("Success", "Locker has been update!!");
+        return redirect()->to("locker")->with("success", "Donee boloo");
     }
 
     /**
@@ -79,6 +91,10 @@ class LockerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $locker = Locker::find($id)->delete();
+        // $locker->delete();
+
+        Alert::success("Success", "Locker has been update!!");
+        return redirect()->to("locker")->with("success", "Donee boloo");
     }
 }

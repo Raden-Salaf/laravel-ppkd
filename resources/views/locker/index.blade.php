@@ -51,7 +51,7 @@ memanggilnya saja dengan menggunakan @include('layouts.app') -> tapi tidak inclu
                                 <a href="{{ route('locker.edit', $locker->id) }}" class="btn icon btn-primary btn-sm ">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <form action="" method="post" class="d-inline">
+                                <form action="{{ route('locker.destroy', $locker->id) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn icon btn-danger btn-sm ">

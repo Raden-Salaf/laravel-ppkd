@@ -5,7 +5,7 @@
 dibuat di app.blade.php, jadi kita tidak perlu menulis ulang layout yang sudah dibuat di app.blade.php, kita hanya perlu
 memanggilnya saja dengan menggunakan @include('layouts.app') -> tapi tidak include dengan CSS (hanya nempel) --}}
 
-@section('title', 'Role Management')
+@section('title', 'Major Management')
 {{-- Menambah isi title dalam file app.blade.php/ atau menggabungkan istilahnya --}}
 
 @section('content')
@@ -15,34 +15,33 @@ memanggilnya saja dengan menggunakan @include('layouts.app') -> tapi tidak inclu
         </div>
         <div class="card-body">
             <div class="mb-3" align="right">
-                <a href="{{ route('role.create') }}" class="btn btn-primary">Create New Role</a>
+                <a href="{{ route('major.create') }}" class="btn btn-primary">Create New Major</a>
             </div>
-            <table class="table table-bordered table-striped text-center">
+            <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
                         <th>Status</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($roles as $index => $role)
+                    @foreach ($majors as $index => $major)
                         <tr>
                             <td>{{ $index += 1 }}</td>
-                            <td>{{ $role->name ?? ''}}</td>
+                            <td>{{ $major->name ?? ''}}</td>
                             <td>
-                                @if($role->is_active == 1)
+                                @if($major->is_active == 1)
                                     <span class="badge text-white bg-info">Active</span>
                                 @else
                                     <span class="badge text-white bg-danger">in Active</span>
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ route('role.edit', $role->id) }}" class="btn icon btn-success btn-sm ">
+                                <a href="{{ route('major.edit', $major->id) }}" class="btn icon btn-success btn-sm ">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <form action="{{ route('role.destroy', $role->id) }}" method="post" class="d-inline">
+                                <form action="{{ route('major.destroy', $major->id) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn icon btn-danger btn-sm ">

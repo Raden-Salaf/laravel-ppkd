@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+use App\Models\Keys;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
 
-class RoleController extends Controller
+class KeyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,9 +23,9 @@ class RoleController extends Controller
         // $users = User::orderByDesc('id')->get();=> ini mengurutkan dari bawah
 
         // $users = User::all();
-        $roles = Role::orderBy("id", "asc")->get();
-        $title = 'Role Management';
-        return view("role.index", compact("roles", "title"));
+        $keys = Keys::orderBy("id", "asc")->get();
+        $title = 'Key Management';
+        return view("key.index", compact("keys", "title"));
     }
 
     /**
@@ -33,8 +33,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $title = "Create New Role";
-        return view("role.create", compact("title"));
+        $title = "Create New Major";
+        return view("key.create", compact("title"));
     }
 
     /**
@@ -47,9 +47,9 @@ class RoleController extends Controller
             "name" => "required",
             "is_active" => "required",
         ]);
-        Role::create($request->all());
-        Alert::success("Success!!", "Create Role Success");
-        return redirect()->to("role")->with("success", "Done booloooo");
+        Keys::create($request->all());
+        Alert::success("Success!!", "Create New Key Success");
+        return redirect()->to("key")->with("success", "Done booloooo");
     }
 
     /**
@@ -65,10 +65,10 @@ class RoleController extends Controller
      */
     public function edit(string $id)
     {
-        $title = "Edit User";
-        $edit = Role::find($id); //Response -> blank
+        $title = "Edit Key";
+        $edit = Keys::find($id); //Response -> blank
         // $edit = User::findOrFail($id); //Response -> 404
-        return view("role.edit", compact("title", 'edit'));
+        return view("key.edit", compact("title", 'edit'));
     }
 
     /**
@@ -83,8 +83,9 @@ class RoleController extends Controller
             ];
         // Jika user memasukan password
 
-        Role::find($id)->update($data);
-        return redirect()->to('role');
+        Keys::find($id)->update($data);
+        Alert::success('Success', 'Key Has Been Update');
+        return redirect()->to('key');
 
         // dibawa ini code opsi 1
         // if (User::find($id)->update($request->all())) {
@@ -97,8 +98,8 @@ class RoleController extends Controller
      */
     public function destroy(string $id)
     {
-        Role::find($id)->delete();
-        Alert::success('Done', 'Gacoorr bolooo!!!, wis hapus HAMA!');
-        return redirect()->to('role')->with('success', '');
+        Keys::find($id)->delete();
+        Alert::success('Done', 'Key  Has Been Destroy');
+        return redirect()->to('key')->with('success', 'gasken bolooooo');
     }
 }

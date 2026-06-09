@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+use App\Models\Student;
+use App\Models\Majors;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
 
-class RoleController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,9 +24,12 @@ class RoleController extends Controller
         // $users = User::orderByDesc('id')->get();=> ini mengurutkan dari bawah
 
         // $users = User::all();
-        $roles = Role::orderBy("id", "asc")->get();
-        $title = 'Role Management';
-        return view("role.index", compact("roles", "title"));
+        $students = Student::with('major')->orderByDesc('id')->get();
+        // return $students;
+        // dd($students)
+        $title = 'Student Management';
+        // $majors = Majors::get();
+        return view("student.index", compact("students", "title"));
     }
 
     /**
@@ -33,8 +37,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $title = "Create New Role";
-        return view("role.create", compact("title"));
+        $title = "Create New Student";
+        $majors = Majors::get();
+        return view("student.create", compact("title", 'majors'));
     }
 
     /**
@@ -44,12 +49,13 @@ class RoleController extends Controller
     {
         // insert into user() values()
         $validate = $request->validate([
+            'major_id' => 'required',
             "name" => "required",
-            "is_active" => "required",
+            "phone" => "required",
         ]);
-        Role::create($request->all());
+        Student::create($request->all());
         Alert::success("Success!!", "Create Role Success");
-        return redirect()->to("role")->with("success", "Done booloooo");
+        return redirect()->to("student")->with("success", "Done booloooo");
     }
 
     /**
@@ -65,10 +71,11 @@ class RoleController extends Controller
      */
     public function edit(string $id)
     {
-        $title = "Edit User";
-        $edit = Role::find($id); //Response -> blank
+        $title = "Edit Student";
+        $edit = Student::find($id); //Response -> blank
         // $edit = User::findOrFail($id); //Response -> 404
-        return view("role.edit", compact("title", 'edit'));
+        $majors = Majors::get();
+        return view("student.edit", compact("title", 'edit', 'majors'));
     }
 
     /**
@@ -78,13 +85,15 @@ class RoleController extends Controller
     {
         $data =
             [
+                'major_id' => $request->major_id,
                 'name' => $request->name,
-                'is_active' => $request->is_active,
+                'phone' => $request->phone,
             ];
         // Jika user memasukan password
 
-        Role::find($id)->update($data);
-        return redirect()->to('role');
+        Student::find($id)->update($data);
+        Alert::success("Success!!", "Update Student Success");
+        return redirect()->to('student');
 
         // dibawa ini code opsi 1
         // if (User::find($id)->update($request->all())) {
@@ -97,8 +106,8 @@ class RoleController extends Controller
      */
     public function destroy(string $id)
     {
-        Role::find($id)->delete();
+        Student::find($id)->delete();
         Alert::success('Done', 'Gacoorr bolooo!!!, wis hapus HAMA!');
-        return redirect()->to('role')->with('success', '');
+        return redirect()->to('student')->with('success', '');
     }
 }

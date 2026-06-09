@@ -103,6 +103,7 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         User::find($id)->delete();
+        Alert::success('Success', 'Major Has Been Destroyed');
         return redirect()->to('user')->with('success', '');
     }
 }

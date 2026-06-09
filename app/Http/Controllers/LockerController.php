@@ -94,7 +94,7 @@ class LockerController extends Controller
         $locker = Locker::find($id)->delete();
         // $locker->delete();
 
-        Alert::success("Success", "Locker has been update!!");
+        Alert::success("Success", "Locker Destroyed!!");
         return redirect()->to("locker")->with("success", "Donee boloo");
     }
 }

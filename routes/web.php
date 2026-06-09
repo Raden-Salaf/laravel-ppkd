@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\KeyController;
 use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\LockerController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MajorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,6 +61,14 @@ Route::resource('locker', LockerController::class);
 
 // Route::get('locker', ())
 
+// Major
+Route::resource('major', MajorController::class);
+
+// Key
+Route::resource('key', KeyController::class);
+
+// Student
+Route::resource('student', StudentController::class);
 
 
 // Route::get('user', [UserController::class, 'index'])->name('user.index');

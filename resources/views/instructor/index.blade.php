@@ -5,7 +5,7 @@
 dibuat di app.blade.php, jadi kita tidak perlu menulis ulang layout yang sudah dibuat di app.blade.php, kita hanya perlu
 memanggilnya saja dengan menggunakan @include('layouts.app') -> tapi tidak include dengan CSS (hanya nempel) --}}
 
-@section('title', 'Student Management')
+@section('title', 'Instructor Management')
 {{-- Menambah isi title dalam file app.blade.php/ atau menggabungkan istilahnya --}}
 
 @section('content')
@@ -15,7 +15,7 @@ memanggilnya saja dengan menggunakan @include('layouts.app') -> tapi tidak inclu
         </div>
         <div class="card-body">
             <div class="mb-3" align="right">
-                <a href="{{ route('student.create') }}" class="btn btn-primary">Create New Student</a>
+                <a href="{{ route('instructor.create') }}" class="btn btn-primary">Create New Instructor</a>
             </div>
             <table class="table table-bordered table-striped text-center">
                 <thead>
@@ -29,18 +29,19 @@ memanggilnya saja dengan menggunakan @include('layouts.app') -> tapi tidak inclu
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($students as $index => $student)
+                    @foreach ($instructors as $index => $instructor)
                         <tr>
                             <td>{{ $index += 1 }}</td>
-                            <td>{{ $student->major->name ?? ''}}</td>
-                            <td>{{ $student->name ?? ''}}</td>
-                            <td>{{ $student->user->email ?? ''}}</td>
-                            <td>{{ $student->phone ?? ''}}</td>
+                            <td>{{ $instructor->major->name ?? ''}}</td>
+                            <td>{{ $instructor->name ?? ''}}</td>
+                            <td>{{ $instructor->user->email ?? ''}}</td>
+                            <td>{{ $instructor->phone ?? ''}}</td>
                             <td>
-                                <a href="{{ route('student.edit', $student->id) }}" class="btn icon btn-success btn-sm ">
+                                <a href="{{ route('instructor.edit', $instructor->id) }}" class="btn icon btn-success btn-sm ">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <form action="{{ route('student.destroy', $student->id) }}" method="post" class="d-inline">
+                                <form action="{{ route('instructor.destroy', $instructor->id) }}" method="post"
+                                    class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn icon btn-danger btn-sm ">

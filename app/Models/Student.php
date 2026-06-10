@@ -11,6 +11,7 @@ class Student extends Model
         'major_id',
         'name',
         'phone',
+        'user_id'
     ];
 
     // ORM -> Object Relations Model
@@ -31,5 +32,9 @@ class Student extends Model
     public function major()
     {
         return $this->belongsTo(Majors::class, 'major_id', 'id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

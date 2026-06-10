@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Update Phone')
+@section('title', 'Update Data Student')
 
 @section('content')
     <div class="card">
@@ -30,6 +30,16 @@
                         <label for="">Phone</label>
                         <input type="text" class="form-control" placeholder="Enter Your Update Name" name="phone" required
                             value="{{ $edit->phone }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Email</label>
+                        <input type="email" class="form-control" placeholder="Input Your Email" name="email"
+                            value="{{ $edit->user->email }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Password</label>
+                        <input type="password" class="form-control" placeholder="Input Your Password" name="password"
+                            value="{{ $edit->password }}" required>
                     </div>
                     <button class="btn btn-primary" type="submit">Save</button>
                     <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>

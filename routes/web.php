@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\KeyController;
 use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\LockerController;
@@ -69,6 +70,10 @@ Route::resource('key', KeyController::class);
 
 // Student
 Route::resource('student', StudentController::class);
+
+// Instructor
+
+Route::resource('instructor', InstructorController::class);
 
 
 // Route::get('user', [UserController::class, 'index'])->name('user.index');

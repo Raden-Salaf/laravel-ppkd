@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Create New Student')
+@section('title', 'Create New Data Instructor')
 
 @section('content')
     <div class="card">
@@ -7,7 +7,7 @@
             <h3 class="card-title">{{ $title ?? "" }}</h3>
         </div>
         <div class="card-body">
-            <form action="{{ route('student.store') }}" method="post">
+            <form action="{{ route('instructor.store') }}" method="post">
                 @csrf
                 <div class="mb-3">
                     <label for="">Major *</label>

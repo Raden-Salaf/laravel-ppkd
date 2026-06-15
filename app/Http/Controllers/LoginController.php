@@ -25,8 +25,23 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            Alert::success("Succes", "Login Accepted!");
-            return redirect()->intended("dashboard");
+
+            $user = Auth::user();
+            $hour = now()->setTimezone('Asia/Jakarta')->hour;
+            $greeting = match (true) {
+                $hour >= 5 && $hour < 12 => 'pagi',
+                $hour < 15 => 'siang',
+                default => 'malam',
+            };
+            $greetingText = match ($greeting) {
+                'pagi' => 'Selamat pagi',
+                'siang' => 'Selamat siang',
+                default => 'Selamat malam',
+            };
+            $name = $user?->name ?? ($user?->email ? explode('@', $user->email)[0] : 'Admin');
+
+            Alert::success('Berhasil Login', $greetingText . ', ' . $name . '! Dashboard siap digunakan.');
+            return redirect()->intended('dashboard');
         }
         return back()->withErrors([
             "email" => "Email atau password salah",

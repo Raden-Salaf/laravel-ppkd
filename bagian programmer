@@ -1,0 +1,15 @@
+1. WEB - Fullstack
+    - SESSION
+
+2. API - REST API / BACKEND
+    - STATUS
+    - RESPONSE
+    - HTTP (GET, POST, PUT, PATCH, DELETE)
+    - TANPA VIEW / JSON (JAVASCRIPT OBJCET NOTATION)
+    - Sanctum Token
+    - token table (personal data -> nama, email, password, dll)
+    - JWT (Json Web Token)-> nama, (boleh milih salah satu yang ingin digenerate)
+
+mobile (ngga punya session), web, node, laravel, mysql, postgresql
+fe -> be -> database
+nangkap response <- be(response) <- database

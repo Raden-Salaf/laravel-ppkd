@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -34,7 +35,28 @@ class UserController extends Controller
     public function create()
     {
         $title = "Create New User";
-        return view("user.create", compact("title"));
+        // $last_user = User::latest("id")->first();
+        $last_user = User::latest()->first();
+        // $number = $last_user ? substr($last_user->code, 3) + 1 : 1;
+        // output : "USR0015"
+        // ada dua cara kondisi
+
+        // if ($last_user) {
+        //     $id = $last_user->id;
+        // } else {
+        //     $id = 1;
+        // }
+        // If -> cara pertama
+
+        // $id = $last_user ? $last_user->id : 1;
+        // cara keuda diatas komen ini
+
+
+        $user_code = "USR" . str_pad($last_user->id + 2, 4, "0", STR_PAD_LEFT);
+        // output->0003
+
+        $roles = Role::get();
+        return view("user.create", compact("title", "roles", "user_code"));
     }
 
     /**

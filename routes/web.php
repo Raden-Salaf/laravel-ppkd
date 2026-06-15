@@ -10,6 +10,13 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
+use App\Models\Instructor;
+use App\Models\Keys;
+use App\Models\Locker;
+use App\Models\Majors;
+use App\Models\Role;
+use App\Models\Student;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -49,7 +56,17 @@ Route::post('action-logout', [LoginController::class, 'actionLogout'])->name('ac
 
 
 Route::get('dashboard', function () {
-    return view('dashboard.index');
+    $stats = [
+        ['title' => 'Total User', 'value' => number_format(User::count()), 'icon' => 'bi bi-person-fill', 'accent' => 'linear-gradient(135deg, #4f46e5, #7c3aed)', 'subtitle' => 'Data akun pengguna'],
+        ['title' => 'Total Student', 'value' => number_format(Student::count()), 'icon' => 'bi bi-mortarboard-fill', 'accent' => 'linear-gradient(135deg, #0f766e, #14b8a6)', 'subtitle' => 'Data siswa terdaftar'],
+        ['title' => 'Total Major', 'value' => number_format(Majors::count()), 'icon' => 'bi bi-book-half', 'accent' => 'linear-gradient(135deg, #ea580c, #f59e0b)', 'subtitle' => 'Program studi aktif'],
+        ['title' => 'Total Locker', 'value' => number_format(Locker::count()), 'icon' => 'bi bi-key-fill', 'accent' => 'linear-gradient(135deg, #2563eb, #38bdf8)', 'subtitle' => 'Locker tersedia'],
+        ['title' => 'Total Instructor', 'value' => number_format(Instructor::count()), 'icon' => 'bi bi-person-badge-fill', 'accent' => 'linear-gradient(135deg, #db2777, #f472b6)', 'subtitle' => 'Pengajar terdaftar'],
+        ['title' => 'Total Role', 'value' => number_format(Role::count()), 'icon' => 'bi bi-shield-lock-fill', 'accent' => 'linear-gradient(135deg, #7c3aed, #a78bfa)', 'subtitle' => 'Hak akses sistem'],
+        ['title' => 'Total Key', 'value' => number_format(Keys::count()), 'icon' => 'bi bi-collection-fill', 'accent' => 'linear-gradient(135deg, #065f46, #34d399)', 'subtitle' => 'Kunci terdaftar'],
+    ];
+
+    return view('dashboard.index', compact('stats'));
 })->middleware(['auth', \App\Http\Middleware\PreventBackHistory::class]); // ini untuk membatasi akses ke halaman dashboard hanya untuk yang sudah login saja, karena sudah menggunakan middleware auth, maka jika belum login akan otomatis diarahkan ke halaman login
 
 //Resource : GET, POST, PUT, DELETE

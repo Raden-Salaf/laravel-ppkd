@@ -45,7 +45,7 @@ class LoginController extends Controller
         }
         return back()->withErrors([
             "email" => "Email atau password salah",
-        ]);
+        ])->onlyInput("email"); //menyimpat input email lama. agar tidak menginput ulang
     }
 
     public function actionLogout(Request $request)

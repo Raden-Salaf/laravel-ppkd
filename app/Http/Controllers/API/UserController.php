@@ -46,7 +46,6 @@ class UserController extends Controller
                 'name' => 'required',
                 'email' => 'required|unique:users,email',
                 'password' => 'required|min:6',
-                'role_id' => 'required'
             ]);
             if ($validator->fails()) {
                 return response()->json([
@@ -60,7 +59,6 @@ class UserController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => $request->password,
-                'role_id' => $request->role_id,
             ]);
             return response()->json([
                 'success' => true,
